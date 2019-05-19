@@ -3,6 +3,8 @@ from PyQt5 import QtWidgets, QtCore, QtGui
 
 
 class Ui_Dialog(object):
+    loaded = QtCore.pyqtSignal(str)
+    fileName = None
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
         Dialog.resize(400, 300)
@@ -16,7 +18,7 @@ class Ui_Dialog(object):
         self.philomathpic = QtWidgets.QLabel(Dialog)
         self.philomathpic.setGeometry(QtCore.QRect(70, 20, 251, 61))
         self.philomathpic.setText("")
-        self.philomathpic.setPixmap(QtGui.QPixmap("../Capstone Project/logo-fs8.png"))
+        self.philomathpic.setPixmap(QtGui.QPixmap("../SWA/resources/logo-fs8.png"))
         self.philomathpic.setScaledContents(True)
         self.philomathpic.setObjectName("philomathpic")
 
@@ -26,10 +28,9 @@ class Ui_Dialog(object):
         self.pushButton_2.clicked.connect(self.loadFile)
 
     def loadFile(self):
-        fileName, _ = QtWidgets.QFileDialog.getOpenFileName(None, "Select File")
-        file = open(fileName, 'r')
-
-      
+        self.fileName = QtWidgets.QFileDialog.getOpenFileName(None, "Select File")
+        if self.fileName != None:
+            self.loaded.emit(self.fileName[0])
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -56,5 +57,3 @@ if __name__ == "__main__":
     ui.setupUi(Dialog)
     Dialog.show()
     sys.exit(app.exec_())
-
-
