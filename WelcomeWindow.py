@@ -25,12 +25,15 @@ class Ui_Dialog(object):
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
-        self.pushButton_2.clicked.connect(self.loadFile)
+        #self.pushButton_2.clicked.connect(self.loadFile)
 
-    def loadFile(self):
-        self.fileName = QtWidgets.QFileDialog.getOpenFileName(None, "Select File")
-        if self.fileName != None:
-            self.loaded.emit(self.fileName[0])
+    #def loadFile(self):
+       #self.fileName = QtWidgets.QFileDialog.getOpenFileName(None, "Select File")
+        #if self.fileName != None:
+            #self.loaded.emit(self.fileName[0])
+
+
+
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -49,11 +52,13 @@ class Ui_Dialog(object):
 
 
 
-if __name__ == "__main__":
+'''if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Dialog = QtWidgets.QDialog()
     ui = Ui_Dialog()
     ui.setupUi(Dialog)
     Dialog.show()
-    sys.exit(app.exec_())
+    QtCore.QTimer.singleShot(20, login)
+
+    sys.exit(app.exec_())'''
